@@ -8,9 +8,15 @@ defmodule PetCareWeb.TutorsJSON do
     }
   end
 
-  def delete(%{tutor: tutor}), do: %{message: "Tutor deleted sucessfully", data: data(tutor)}
+  def delete(%{tutor: tutor}) do
+    %{message: "Tutor deleted sucessfully", data: data(tutor)}
+  end
+
   def get(%{tutor: tutor}), do: %{data: data(tutor)}
-  def update(%{tutor: tutor}), do: %{message: "Tutor updated sucessfully", data: data(tutor)}
+
+  def update(%{tutor: tutor}) do
+    %{message: "Tutor updated sucessfully", data: data(tutor)}
+  end
 
   defp data(%Tutor{} = tutor) do
     %{
