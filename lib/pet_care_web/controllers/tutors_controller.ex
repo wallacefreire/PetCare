@@ -1,6 +1,6 @@
 defmodule PetCareWeb.TutorsController do
   use PetCareWeb, :controller
-  require Logger
+
   alias PetCare.Tutors
   alias PetCare.Tutors.Schema.Tutor
 
