@@ -9,7 +9,7 @@ defmodule PetCare.TutorsControllerTest do
       params = %{
         name: "Wallace",
         cpf: "010.149.493-29",
-        age: 28,
+        birth_date: ~D[2018-11-11],
         password: "1234567",
         email: "wallace@okay.com"
       }
@@ -21,7 +21,7 @@ defmodule PetCare.TutorsControllerTest do
 
       assert %{
                "data" => %{
-                 "age" => 28,
+                 "birth_date" => ~D[2018-11-11],
                  "cpf" => "010.149.493-29",
                  "email" => "wallace@okay.com",
                  "id" => _id,
@@ -35,7 +35,7 @@ defmodule PetCare.TutorsControllerTest do
       params = %{
         name: "AB",
         cpf: nil,
-        age: 28,
+        birth_date: ~D[2018-11-11],
         password: "1",
         email: "wallaceheleno.com"
       }
@@ -63,7 +63,7 @@ defmodule PetCare.TutorsControllerTest do
       params = %{
         name: "Wallace",
         cpf: "010.149.493-29",
-        age: 28,
+        birth_date: ~D[2018-11-11],
         password: "1234567",
         email: "wallace@okay.com"
       }
@@ -77,7 +77,7 @@ defmodule PetCare.TutorsControllerTest do
 
       expected_response = %{
         "data" => %{
-          "age" => 28,
+          "birth_date" => ~D[2018-11-11],
           "cpf" => "010.149.493-29",
           "email" => "wallace@okay.com",
           "id" => id,
@@ -106,7 +106,7 @@ defmodule PetCare.TutorsControllerTest do
       params = %{
         name: "Heleno",
         cpf: "010.149.493-29",
-        age: 18,
+        birth_date: ~D[2018-11-20],
         password: "1234567",
         email: "wallace@damn.com"
       }
@@ -121,7 +121,7 @@ defmodule PetCare.TutorsControllerTest do
       expected_response =
         %{
           "data" => %{
-            "age" => 18,
+            "birth_date" => ~D[2018-11-20],
             "cpf" => "010.149.493-29",
             "email" => "wallace@damn.com",
             "id" => id,
@@ -149,14 +149,14 @@ defmodule PetCare.TutorsControllerTest do
       params = %{
         name: "Wallace",
         cpf: "010.149.493-29",
-        age: 28,
+        birth_date: ~D[2018-11-29],
         password: "1234567",
         email: "wallace@okay.com"
       }
 
       {:ok, %Tutor{id: id}} = Tutors.create(params)
 
-      update_params = %{name: "Wallace Heleno", age: 29, email: "wallaceheleno@okay.com"}
+      update_params = %{name: "Wallace Heleno", birth_date: 29, email: "wallaceheleno@okay.com"}
 
       response =
         conn
@@ -165,7 +165,7 @@ defmodule PetCare.TutorsControllerTest do
 
       assert %{
                "data" => %{
-                 "age" => 29,
+                 "birth_date" => 29,
                  "cpf" => "010.149.493-29",
                  "email" => "wallaceheleno@okay.com",
                  "id" => _id,
@@ -180,7 +180,7 @@ defmodule PetCare.TutorsControllerTest do
 
       update_params = %{
         name: "Wallace Heleno",
-        age: 29
+        birth_date: 29
       }
 
       response =

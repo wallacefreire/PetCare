@@ -14,9 +14,4 @@ defmodule PetCare.Repo.Migrations.AddDogsTable do
 
     create index(:dogs, [:tutor_id])
   end
-
-  def down do
-    # drop index(:dogs, [:tutor_id])
-    drop table(:dogs)
-  end
 end
