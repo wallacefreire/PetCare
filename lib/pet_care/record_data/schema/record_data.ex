@@ -21,5 +21,8 @@ defmodule PetCare.RecordData.Schema.RecordData do
     record_data
     |> cast(params, [@required_params])
     |> validate_required([@required_params])
+    |> foreign_key_constraint(:tutor_id)
+    |> foreign_key_constraint(:dog_id)
+    |> foreign_key_constraint(:veterinarian_id)
   end
 end

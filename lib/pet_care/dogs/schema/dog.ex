@@ -22,5 +22,6 @@ defmodule PetCare.Dogs.Schema.Dog do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_number(:weight, greater_than: 0)
+    |> foreign_key_constraint(:tutor_id)
   end
 end
