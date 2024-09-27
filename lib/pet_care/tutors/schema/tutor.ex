@@ -4,6 +4,7 @@ defmodule PetCare.Tutors.Schema.Tutor do
 
   alias PetCare.Enderecos.Schema.Endereco
   alias PetCare.Dogs.Schema.Dog
+  alias PetCare.RecordData.Schema.RecordData
 
   @required_params [:name, :cpf, :birth_date, :password, :email]
 
@@ -17,6 +18,7 @@ defmodule PetCare.Tutors.Schema.Tutor do
 
     has_one :endereco, Endereco
     has_many :dogs, Dog
+    has_many :record_data, RecordData
 
     timestamps()
   end

@@ -3,6 +3,7 @@ defmodule PetCare.Dogs.Schema.Dog do
   import Ecto.Changeset
 
   alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.RecordData.Schema.RecordData
 
   @required_params [:name, :breed, :weight]
 
@@ -11,6 +12,7 @@ defmodule PetCare.Dogs.Schema.Dog do
     field :breed, :string
     field :weight, :float
 
+    has_many :record_data, RecordData
     belongs_to :tutor, Tutor
     timestamps()
   end

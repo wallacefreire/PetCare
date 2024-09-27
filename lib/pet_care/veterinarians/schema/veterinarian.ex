@@ -2,8 +2,12 @@ defmodule PetCare.Veterinarians.Schema.Veterinarian do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias PetCare.RecordData.Schema.RecordData
+
   schema "veterinarians" do
     field :name, :string
+
+    has_many :record_data, RecordData
 
     timestamps()
   end
