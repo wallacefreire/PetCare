@@ -19,8 +19,8 @@ defmodule PetCare.RecordData.Schema.RecordData do
 
   def changeset(record_data \\ %__MODULE__{}, params) do
     record_data
-    |> cast(params, [@required_params])
-    |> validate_required([@required_params])
+    |> cast(params, @required_params)
+    |> validate_required(@required_params)
     |> foreign_key_constraint(:tutor_id)
     |> foreign_key_constraint(:dog_id)
     |> foreign_key_constraint(:veterinarian_id)
