@@ -168,14 +168,14 @@ defmodule PetCare.TutorsControllerTest do
                  "birth_date" => "2018-11-29",
                  "cpf" => "010.149.493-29",
                  "email" => "wallaceheleno@okay.com",
-                 "id" => _id,
+                 "id" => ^id,
                  "name" => "Wallace Heleno"
                },
                "message" => "Tutor updated sucessfully"
              } = response
     end
 
-    test "returns an error when trying to update a tutor with invalid data", %{conn: conn} do
+    test "returns an error when trying to update a tutor with invalid id", %{conn: conn} do
       invalid_id = 999
 
       update_params = %{
@@ -189,6 +189,36 @@ defmodule PetCare.TutorsControllerTest do
         |> json_response(:not_found)
 
       expected_response = %{"message" => "Não encontrado", "status" => "not_found"}
+
+      assert response == expected_response
+    end
+
+    test "error entering invalid data", %{conn: conn} do
+      params = %{
+        name: "Wallace",
+        cpf: "010.149.493-29",
+        birth_date: ~D[2018-11-29],
+        password: "1234567",
+        email: "wallace@okay.com"
+      }
+
+      {:ok, %Tutor{id: id}} = Tutors.create(params)
+
+      update_params = %{name: "WH", cpf: "2329", password: "930", email: "wallaceokay.com"}
+
+      response =
+        conn
+        |> put(~p"/api/tutors/#{id}", update_params)
+        |> json_response(:bad_request)
+
+      expected_response = %{
+        "errors" => %{
+          "cpf" => ["should be at least 11 character(s)"],
+          "email" => ["has invalid format"],
+          "name" => ["should be at least 3 character(s)"],
+          "password" => ["should be at least 4 character(s)"]
+        }
+      }
 
       assert response == expected_response
     end
