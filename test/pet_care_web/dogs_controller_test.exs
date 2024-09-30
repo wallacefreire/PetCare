@@ -1,15 +1,35 @@
 defmodule PetCareWeb.DogsControllerTest do
   use PetCareWeb.ConnCase
 
+  alias PetCare.Tutors
+  alias PetCare.Tutors.Schema.Tutor
   alias PetCare.Dogs
   alias PetCare.Dogs.Schema.Dog
 
+  defp tutor_params do
+    %{
+      name: "Joseph ",
+      cpf: "394.230.231-03",
+      birth_date: ~D[1998-12-24],
+      password: "1094320",
+      email: "joseph@cmon.com"
+    }
+  end
+
+  defp create_tutor do
+    {:ok, %Tutor{id: id}} = Tutors.create(tutor_params())
+    id
+  end
+
   describe "CREATE - dog" do
     test "sucessfully creates an dog", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Pitico",
         breed: "Não conhecida",
-        weight: 3.87
+        weight: 3.87,
+        tutor_id: tutor_id
       }
 
       response =
@@ -29,10 +49,13 @@ defmodule PetCareWeb.DogsControllerTest do
     end
 
     test "invalid params = error", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Pitico",
         breed: "",
-        weight: -5.39
+        weight: -5.39,
+        tutor_id: tutor_id
       }
 
       response =
@@ -50,10 +73,13 @@ defmodule PetCareWeb.DogsControllerTest do
 
   describe "DELETE - dog" do
     test "AUAU deleted Sucessfully", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Pitocão",
         breed: "Superior",
-        weight: 98.78
+        weight: 98.78,
+        tutor_id: tutor_id
       }
 
       {:ok, %Dog{id: id}} = Dogs.create(params)
@@ -81,7 +107,7 @@ defmodule PetCareWeb.DogsControllerTest do
 
       response =
         conn
-        |> delete(~p"/api/tutors/#{invalid_id}")
+        |> delete(~p"/api/dogs/#{invalid_id}")
         |> json_response(:not_found)
 
       assert %{"message" => "Não encontrado", "status" => "not_found"} = response
@@ -90,10 +116,13 @@ defmodule PetCareWeb.DogsControllerTest do
 
   describe "GET - dog" do
     test "SHOW - returns 200 and show user by params", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Pingolin",
         breed: "Morta",
-        weight: 0.01
+        weight: 0.01,
+        tutor_id: tutor_id
       }
 
       {:ok, %Dog{id: id}} = Dogs.create(params)
@@ -104,12 +133,7 @@ defmodule PetCareWeb.DogsControllerTest do
         |> json_response(:ok)
 
       expected_response = %{
-        "data" => %{
-          "breed" => "Morta",
-          "id" => id,
-          "name" => "Pingolin",
-          "weight" => 0.01
-        }
+        "data" => %{"breed" => "Morta", "id" => id, "name" => "Pingolin", "weight" => 0.01}
       }
 
       assert response == expected_response
@@ -129,10 +153,13 @@ defmodule PetCareWeb.DogsControllerTest do
 
   describe "POST - dog" do
     test "when update dog successfully", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Negão",
         breed: "Rottweiler",
-        weight: 52.5
+        weight: 52.5,
+        tutor_id: tutor_id
       }
 
       {:ok, %Dog{id: id}} = Dogs.create(params)
@@ -176,15 +203,18 @@ defmodule PetCareWeb.DogsControllerTest do
     end
 
     test "error entering invalid data", %{conn: conn} do
+      tutor_id = create_tutor()
+
       params = %{
         name: "Cachorrin",
         breed: "Vira-Lata",
-        weight: 4.93
+        weight: 4.93,
+        tutor_id: tutor_id
       }
 
       {:ok, %Dog{id: id}} = Dogs.create(params)
 
-      update_params = %{name: "", breed: "", weight: 0}
+      update_params = %{name: "", breed: "", weight: 0, tutor_id: ""}
 
       response =
         conn
@@ -195,7 +225,8 @@ defmodule PetCareWeb.DogsControllerTest do
         "errors" => %{
           "breed" => ["can't be blank"],
           "name" => ["can't be blank"],
-          "weight" => ["must be greater than 0"]
+          "weight" => ["must be greater than 0"],
+          "tutor_id" => ["can't be blank"]
         }
       }
 

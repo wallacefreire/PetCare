@@ -5,7 +5,7 @@ defmodule PetCare.Dogs.Schema.Dog do
   alias PetCare.Tutors.Schema.Tutor
   alias PetCare.RecordData.Schema.RecordData
 
-  @required_params [:name, :breed, :weight]
+  @required_params [:name, :breed, :weight, :tutor_id]
 
   schema "dogs" do
     field :name, :string
