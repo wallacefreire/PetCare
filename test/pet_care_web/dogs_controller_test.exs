@@ -8,7 +8,7 @@ defmodule PetCareWeb.DogsControllerTest do
 
   defp tutor_params do
     %{
-      name: "Joseph ",
+      name: "Joseph",
       cpf: "394.230.231-03",
       birth_date: ~D[1998-12-24],
       password: "1094320",
@@ -110,7 +110,7 @@ defmodule PetCareWeb.DogsControllerTest do
         |> delete(~p"/api/dogs/#{invalid_id}")
         |> json_response(:not_found)
 
-      assert %{"message" => "Não encontrado", "status" => "not_found"} = response
+      assert %{"message" => "Resource not found", "status" => "not_found"} = response
     end
   end
 
@@ -147,7 +147,7 @@ defmodule PetCareWeb.DogsControllerTest do
         |> get(~p"/api/dogs/#{invalid_id}")
         |> json_response(:not_found)
 
-      assert %{"message" => "Não encontrado", "status" => "not_found"} = response
+      assert %{"message" => "Resource not found", "status" => "not_found"} = response
     end
   end
 
@@ -197,7 +197,7 @@ defmodule PetCareWeb.DogsControllerTest do
         |> put(~p"/api/tutors/#{invalid_id}", update_params)
         |> json_response(:not_found)
 
-      expected_response = %{"message" => "Não encontrado", "status" => "not_found"}
+      expected_response = %{"message" => "Resource not found", "status" => "not_found"}
 
       assert response == expected_response
     end

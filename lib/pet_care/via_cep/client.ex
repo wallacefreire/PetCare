@@ -1,11 +1,11 @@
 defmodule PetCare.ViaCep.Client do
   use Tesla
 
-  plug Tesla.Middleware.BaseUrl, "https://viacep.com.br/ws"
+  @default_url "https://viacep.com.br/ws"
   plug Tesla.Middleware.JSON
 
-  def validate_cep(cep) do
-    "/#{cep}/json"
+  def validate_cep(url \\ @default_url, cep) do
+    "#{url}/#{cep}/json"
     |> get()
     |> handle_response()
   end

@@ -22,6 +22,7 @@ defmodule PetCare.Enderecos.Schema.Endereco do
     endereco
     |> cast(params, @required_params)
     |> validate_required(@required_params)
+    |> update_change(:cep, &String.replace(&1, "-", ""))
     |> validate_length(:cep, is: 8)
   end
 end
