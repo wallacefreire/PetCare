@@ -1,8 +1,8 @@
-defmodule PetCare.Enderecos.Schema.Endereco do
+defmodule PetCare.Addresses.Address do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
 
   @required_params [:cep, :rua, :number, :bairro, :city, :state]
 

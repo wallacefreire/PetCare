@@ -2,7 +2,7 @@ defmodule PetCare.TutorsControllerTest do
   use PetCareWeb.ConnCase
 
   alias PetCare.Tutors
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
 
   describe "create/2" do
     test "sucessfully creates an tutor", %{conn: conn} do

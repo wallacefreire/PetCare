@@ -27,7 +27,7 @@ defmodule PetCareWeb.Router do
         :show
       ]
 
-    post "/enderecos", EnderecosController, :create
+    post "/address", AddressesController, :create
   end
 
   # Enable LiveDashboard in development

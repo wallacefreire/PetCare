@@ -1,5 +1,5 @@
 defmodule PetCareWeb.VeterinariansJSON do
-  alias PetCare.Veterinarians.Schema.Veterinarian
+  alias PetCare.Veterinarians.Veterinarian
 
   def create(%{veterinarian: veterinarian}) do
     %{

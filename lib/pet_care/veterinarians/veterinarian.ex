@@ -1,8 +1,8 @@
-defmodule PetCare.Veterinarians.Schema.Veterinarian do
+defmodule PetCare.Veterinarians.Veterinarian do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.RecordData.Schema.RecordData
+  alias PetCare.RecordData.RecordData
 
   schema "veterinarians" do
     field :name, :string

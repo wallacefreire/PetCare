@@ -1,9 +1,9 @@
-defmodule PetCare.Dogs.Schema.Dog do
+defmodule PetCare.Dogs.Dog do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.Tutors.Schema.Tutor
-  alias PetCare.RecordData.Schema.RecordData
+  alias PetCare.Tutors.Tutor
+  alias PetCare.RecordData.RecordData
 
   @required_params [:name, :breed, :weight, :tutor_id]
 

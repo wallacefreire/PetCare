@@ -2,7 +2,7 @@ defmodule PetCareWeb.VeterinariansControllerTest do
   use PetCareWeb.ConnCase
 
   alias PetCare.Veterinarians
-  alias PetCare.Veterinarians.Schema.Veterinarian
+  alias PetCare.Veterinarians.Veterinarian
 
   describe "CREATE - veterinarian" do
     test "success in creating a veterinarian", %{conn: conn} do

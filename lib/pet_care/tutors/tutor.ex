@@ -1,10 +1,10 @@
-defmodule PetCare.Tutors.Schema.Tutor do
+defmodule PetCare.Tutors.Tutor do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.Enderecos.Schema.Endereco
-  alias PetCare.Dogs.Schema.Dog
-  alias PetCare.RecordData.Schema.RecordData
+  alias PetCare.Addresses.Address
+  alias PetCare.Dogs.Dog
+  alias PetCare.RecordData.RecordData
 
   @required_params [:name, :cpf, :birth_date, :password, :email]
 
@@ -16,7 +16,7 @@ defmodule PetCare.Tutors.Schema.Tutor do
     field :password_hash, :string
     field :email, :string
 
-    has_one :endereco, Endereco
+    has_one :address, Address
     has_many :dogs, Dog
     has_many :record_data, RecordData
 

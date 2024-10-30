@@ -1,12 +1,12 @@
-defmodule PetCare.Enderecos.CreateEndereco do
-  alias PetCare.Enderecos.Schema.Endereco
+defmodule PetCare.Addresses do
+  alias PetCare.Addresses.Address
   alias PetCare.Repo
   alias PetCare.ViaCep.Client, as: ViaCepClient
 
-  def call(%{"cep" => cep} = params) do
+  def create_address(%{"cep" => cep} = params) do
     with {:ok, _result} <- client().validate_cep(cep) do
       params
-      |> Endereco.changeset()
+      |> Address.changeset()
       |> Repo.insert()
     end
   end

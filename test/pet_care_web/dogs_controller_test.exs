@@ -2,9 +2,9 @@ defmodule PetCareWeb.DogsControllerTest do
   use PetCareWeb.ConnCase
 
   alias PetCare.Tutors
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
   alias PetCare.Dogs
-  alias PetCare.Dogs.Schema.Dog
+  alias PetCare.Dogs.Dog
 
   defp tutor_params do
     %{

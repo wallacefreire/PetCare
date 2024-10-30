@@ -1,5 +1,5 @@
 defmodule PetCareWeb.RecordDataJSON do
-  alias PetCare.RecordData.Schema.RecordData
+  alias PetCare.RecordData.RecordData
 
   def create(%{record_data: record_data}) do
     %{

@@ -1,10 +1,10 @@
-defmodule PetCare.RecordData.Schema.RecordData do
+defmodule PetCare.RecordData.RecordData do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.Tutors.Schema.Tutor
-  alias PetCare.Dogs.Schema.Dog
-  alias PetCare.Veterinarians.Schema.Veterinarian
+  alias PetCare.Tutors.Tutor
+  alias PetCare.Dogs.Dog
+  alias PetCare.Veterinarians.Veterinarian
 
   @required_params [:date_time, :tutor_id, :dog_id, :veterinarian_id]
 

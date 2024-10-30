@@ -1,5 +1,5 @@
 defmodule PetCareWeb.TutorsJSON do
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
 
   def create(%{tutor: tutor}) do
     %{

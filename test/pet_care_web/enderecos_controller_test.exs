@@ -1,10 +1,10 @@
-defmodule PetCareWeb.EnderecosControllerTest do
+defmodule PetCareWeb.AddressesControllerTest do
   use PetCareWeb.ConnCase
 
   import Mox
 
   alias PetCare.Tutors
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
   alias PetCare.ViaCep.ClientMock
 
   setup :verify_on_exit!
@@ -90,12 +90,12 @@ defmodule PetCareWeb.EnderecosControllerTest do
         "tutor_id" => tutor_id
       }
 
-       response =
+      response =
         conn
         |> post(~p"/api/enderecos", params)
         |> json_response(:bad_request)
 
-        assert response == "okay"
+      assert response == "okay"
     end
   end
 end
