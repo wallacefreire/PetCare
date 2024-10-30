@@ -1,10 +1,13 @@
 defmodule PetCare.Tutors.Tutor do
+<<<<<<< HEAD
   @moduledoc """
   Schema for `Tutor`, representing the owner of pets in the pet care system.
 
   Each tutor can have one address and multiple dogs, as well as records of consultations.
   """
 
+=======
+>>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   use Ecto.Schema
   import Ecto.Changeset
 

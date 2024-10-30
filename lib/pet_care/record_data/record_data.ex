@@ -1,4 +1,5 @@
 defmodule PetCare.RecordData.RecordData do
+<<<<<<< HEAD
   @moduledoc """
   Represents a record of an animal consultation or appointment in the pet care system.
 
@@ -6,6 +7,8 @@ defmodule PetCare.RecordData.RecordData do
   This provides a log of each appointment, detailing which pet was seen by which veterinarian and when.
   """
 
+=======
+>>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -24,6 +27,7 @@ defmodule PetCare.RecordData.RecordData do
     timestamps()
   end
 
+<<<<<<< HEAD
   @doc """
   Builds a changeset for validating and saving consultation record data
 
@@ -31,6 +35,8 @@ defmodule PetCare.RecordData.RecordData do
     - Ensures the presence of `date_time`, `tutor_id`, `dog_id`, and `veterinarian_id`.
     - Enforces foreign key constraints on `tutor_id`, `dog_id`, and `veterinarian_id` to ensure each record is linked to existing data.
   """
+=======
+>>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def changeset(record_data \\ %__MODULE__{}, params) do
     record_data
     |> cast(params, @required_params)

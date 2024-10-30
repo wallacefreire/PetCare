@@ -1,4 +1,5 @@
 defmodule PetCare.Dogs.Dog do
+<<<<<<< HEAD
   @moduledoc """
   Represents a dog in the pet care system.
 
@@ -6,6 +7,8 @@ defmodule PetCare.Dogs.Dog do
   Stores essential information such as the dog's name, breed, weight, and its tutor.
   """
 
+=======
+>>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -24,6 +27,7 @@ defmodule PetCare.Dogs.Dog do
     timestamps()
   end
 
+<<<<<<< HEAD
   @doc """
   Builds a changeset for validating and saving dog data.
 
@@ -32,6 +36,8 @@ defmodule PetCare.Dogs.Dog do
     - Validates that `weight` is greater than 0.
     - Enforces a foreign key constraint on `tutor_id` to ensure the dog is associated with an existing tutor.
   """
+=======
+>>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def changeset(dog \\ %__MODULE__{}, params) do
     dog
     |> cast(params, @required_params)
