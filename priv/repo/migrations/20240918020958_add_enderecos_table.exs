@@ -1,4 +1,4 @@
-defmodule PetCare.Repo.Migrations.CreateEnderecosTable do
+defmodule PetCare.Repo.Migrations.AddEnderecosTable do
   use Ecto.Migration
 
   def change do

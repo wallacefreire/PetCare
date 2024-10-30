@@ -4,6 +4,7 @@ defmodule PetCare.Tutors.Schema.Tutor do
 
   alias PetCare.Enderecos.Schema.Endereco
   alias PetCare.Dogs.Schema.Dog
+  alias PetCare.RecordData.Schema.RecordData
 
   @required_params [:name, :cpf, :birth_date, :password, :email]
 
@@ -17,6 +18,7 @@ defmodule PetCare.Tutors.Schema.Tutor do
 
     has_one :endereco, Endereco
     has_many :dogs, Dog
+    has_many :record_data, RecordData
 
     timestamps()
   end
@@ -43,8 +45,10 @@ defmodule PetCare.Tutors.Schema.Tutor do
     changeset
     |> validate_length(:name, min: 3)
     |> validate_length(:password, min: 4)
+    |> validate_length(:cpf, min: 11)
     |> validate_format(:email, ~r/@/)
-    |> unique_constraint(:email, :cpf)
+    |> unique_constraint(:email)
+    |> unique_constraint(:cpf)
   end
 
   defp add_password_hash(

@@ -20,7 +20,11 @@ defmodule PetCareWeb.ErrorJSON do
   end
 
   def error(%{status: :not_found}) do
-    %{status: :not_found, message: "Tutor not found"}
+    %{status: :not_found, message: "Resource not found"}
+  end
+
+  def error(%{status: status}) do
+    %{status: status}
   end
 
   def error(%{changeset: changeset}) do
