@@ -1,9 +1,14 @@
 defmodule PetCare.ViaCep.Client do
   use Tesla
 
+  alias PetCare.ViaCep.ClientBehaviour
+
   @default_url "https://viacep.com.br/ws"
   plug Tesla.Middleware.JSON
 
+  @behaviour ClientBehaviour
+
+  @impl ClientBehaviour
   def validate_cep(url \\ @default_url, cep) do
     "#{url}/#{cep}/json"
     |> get()
