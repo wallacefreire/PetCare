@@ -1,4 +1,11 @@
 defmodule PetCare.Veterinarians.Veterinarian do
+  @moduledoc """
+  Schema for `Veterinarian`, representing a veterinarian in the pet care system.
+
+  A veterinarian has a `name` and may be associated with multiple `RecordData` entries
+  that log their consultations with pets.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -12,6 +19,11 @@ defmodule PetCare.Veterinarians.Veterinarian do
     timestamps()
   end
 
+  @doc """
+  Creates a changeset for a `Veterinarian`.
+
+  Validates the presence of `name`, ensuring it has a minimum length of 3 and a maximum of 80 characters.
+  """
   def changeset(veterinarian \\ %__MODULE__{}, params) do
     veterinarian
     |> cast(params, [:name])

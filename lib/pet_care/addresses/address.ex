@@ -1,4 +1,10 @@
 defmodule PetCare.Addresses.Address do
+  @moduledoc """
+  Represents an address in the pet care system.
+
+  Each address is associated with a tutor
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -18,6 +24,14 @@ defmodule PetCare.Addresses.Address do
     timestamps()
   end
 
+  @doc """
+  Builds a changeset for validating and saving address data.
+
+  ## Validations
+    - Ensures the presence of all required fields (`cep`, `rua`, `number`, `bairro`, `city`, `state`).
+    - Normalizes `cep` by removing any hyphens.
+    - Validates that `cep` has exactly 8 characters.
+  """
   def changeset(endereco \\ %__MODULE__{}, params) do
     endereco
     |> cast(params, @required_params)

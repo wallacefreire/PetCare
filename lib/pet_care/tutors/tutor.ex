@@ -1,4 +1,10 @@
 defmodule PetCare.Tutors.Tutor do
+  @moduledoc """
+  Schema for `Tutor`, representing the owner of pets in the pet care system.
+
+  Each tutor can have one address and multiple dogs, as well as records of consultations.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -23,7 +29,11 @@ defmodule PetCare.Tutors.Tutor do
     timestamps()
   end
 
-  # changeset create
+  @doc """
+  Creates a changeset for creating a new tutor.
+
+  Validates required fields and ensures password hashing.
+  """
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)
@@ -32,7 +42,11 @@ defmodule PetCare.Tutors.Tutor do
     |> add_password_hash()
   end
 
-  # changeset update
+  @doc """
+  Creates a changeset for updating an existing tutor.
+
+  Validates fields and applies password hashing if `password` is changed.
+  """
   def changeset(tutor, params) do
     tutor
     |> cast(params, @required_params)
@@ -41,6 +55,11 @@ defmodule PetCare.Tutors.Tutor do
     |> add_password_hash()
   end
 
+  @doc """
+  Applies additional validations for tutor fields.
+
+  Ensures minimum length for `name`, `password`, and `cpf`, checks email format, and enforces unique constraints for `email` and `cpf`.
+  """
   defp do_validations(changeset) do
     changeset
     |> validate_length(:name, min: 3)
@@ -51,6 +70,11 @@ defmodule PetCare.Tutors.Tutor do
     |> unique_constraint(:cpf)
   end
 
+  @doc """
+  Adds a hashed password to the changeset if `password` is provided and valid.
+
+  Uses the Argon2 hashing algorithm to securely store the password.
+  """
   defp add_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do
