@@ -1,5 +1,4 @@
 defmodule PetCare.Veterinarians do
-<<<<<<< HEAD
   @moduledoc """
   Manages CRUD operations for `Veterinarian`, representing a veterinarian in the pet care system.
   """
@@ -17,19 +16,12 @@ defmodule PetCare.Veterinarians do
     - `{:ok, %Veterinarian{}}` if the veterinarian is created successfully.
     - `{:error, changeset}` if there is a validation error or if the insertion fails.
   """
-=======
-  alias PetCare.Veterinarians.Veterinarian
-  alias PetCare.Repo
-
-  # create
->>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def create_veterinarian(params) do
     params
     |> Veterinarian.changeset()
     |> Repo.insert()
   end
 
-<<<<<<< HEAD
   @doc """
   Deletes a veterinarian by their ID.
 
@@ -40,9 +32,6 @@ defmodule PetCare.Veterinarians do
     - `:ok` if the veterinarian is deleted successfully.
     - `{:error, :not_found}` if the veterinarian is not found.
   """
-=======
-  # delete
->>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def delete_veterinarian(id) do
     case Repo.get(Veterinarian, id) do
       nil -> {:error, :not_found}
@@ -50,7 +39,6 @@ defmodule PetCare.Veterinarians do
     end
   end
 
-<<<<<<< HEAD
   @doc """
   Retrieves a veterinarian by their ID.
 
@@ -61,9 +49,6 @@ defmodule PetCare.Veterinarians do
     - `{:ok, %Veterinarian{}}` if the veterinarian is found.
     - `{:error, :not_found}` if the veterinarian is not found.
   """
-=======
-  # get
->>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def get_veterinarian(id) do
     case Repo.get(Veterinarian, id) do
       nil -> {:error, :not_found}
@@ -71,7 +56,6 @@ defmodule PetCare.Veterinarians do
     end
   end
 
-<<<<<<< HEAD
   @doc """
   Updates an existing veterinarian's information.
 
@@ -83,9 +67,6 @@ defmodule PetCare.Veterinarians do
     - `{:error, :not_found}` if the veterinarian is not found.
     - `{:error, changeset}` if there is a validation error during the update.
   """
-=======
-  # update
->>>>>>> bc88e7d (refactor: adjustments to CRUD controllers and functions)
   def update_veterinarian(%{"id" => id} = params) do
     case Repo.get(Veterinarian, id) do
       nil -> {:error, :not_found}
