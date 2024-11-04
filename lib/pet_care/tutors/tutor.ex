@@ -1,9 +1,16 @@
-defmodule PetCare.Tutors.Schema.Tutor do
+defmodule PetCare.Tutors.Tutor do
+  @moduledoc """
+  Schema for `Tutor`, representing the owner of pets in the pet care system.
+
+  Each tutor can have one address and multiple dogs, as well as records of consultations.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PetCare.Enderecos.Schema.Endereco
-  alias PetCare.Dogs.Schema.Dog
+  alias PetCare.Addresses.Address
+  alias PetCare.Dogs.Dog
+  alias PetCare.RecordData.RecordData
 
   @required_params [:name, :cpf, :birth_date, :password, :email]
 
@@ -15,13 +22,18 @@ defmodule PetCare.Tutors.Schema.Tutor do
     field :password_hash, :string
     field :email, :string
 
-    has_one :endereco, Endereco
+    has_one :address, Address
     has_many :dogs, Dog
+    has_many :record_data, RecordData
 
     timestamps()
   end
 
-  # changeset create
+  @doc """
+  Creates a changeset for creating a new tutor.
+
+  Validates required fields and ensures password hashing.
+  """
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)
@@ -30,7 +42,11 @@ defmodule PetCare.Tutors.Schema.Tutor do
     |> add_password_hash()
   end
 
-  # changeset update
+  @doc """
+  Creates a changeset for updating an existing tutor.
+
+  Validates fields and applies password hashing if `password` is changed.
+  """
   def changeset(tutor, params) do
     tutor
     |> cast(params, @required_params)
@@ -43,8 +59,10 @@ defmodule PetCare.Tutors.Schema.Tutor do
     changeset
     |> validate_length(:name, min: 3)
     |> validate_length(:password, min: 4)
+    |> validate_length(:cpf, min: 11)
     |> validate_format(:email, ~r/@/)
-    |> unique_constraint(:email, :cpf)
+    |> unique_constraint(:email)
+    |> unique_constraint(:cpf)
   end
 
   defp add_password_hash(

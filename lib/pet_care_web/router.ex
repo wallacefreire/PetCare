@@ -10,6 +10,24 @@ defmodule PetCareWeb.Router do
 
     resources "/tutors", TutorsController, only: [:create, :update, :delete, :show]
     resources "/dogs", DogsController, only: [:create, :update, :delete, :show]
+
+    resources "/record_data", RecordDataController,
+      only: [
+        :create,
+        :update,
+        :delete,
+        :show
+      ]
+
+    resources "/veterinarians", VeterinariansController,
+      only: [
+        :create,
+        :update,
+        :delete,
+        :show
+      ]
+
+    post "/addresses", AddressesController, :create
   end
 
   # Enable LiveDashboard in development

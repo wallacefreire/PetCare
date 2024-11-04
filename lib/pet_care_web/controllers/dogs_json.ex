@@ -1,5 +1,5 @@
 defmodule PetCareWeb.DogsJSON do
-  alias PetCare.Dogs.Schema.Dog
+  alias PetCare.Dogs.Dog
 
   def create(%{dog: dog}) do
     %{
@@ -8,9 +8,15 @@ defmodule PetCareWeb.DogsJSON do
     }
   end
 
-  def delete(%{dog: dog}), do: %{message: "Dog deleted sucessfully", data: data(dog)}
+  def delete(%{dog: dog}) do
+    %{message: "Dog deleted sucessfully", data: data(dog)}
+  end
+
   def get(%{dog: dog}), do: %{data: data(dog)}
-  def update(%{dog: dog}), do: %{message: "Dog updated sucessfully", data: data(dog)}
+
+  def update(%{dog: dog}) do
+    %{message: "Dog updated sucessfully", data: data(dog)}
+  end
 
   defp data(%Dog{} = dog) do
     %{

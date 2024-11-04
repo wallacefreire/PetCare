@@ -2,12 +2,12 @@ defmodule PetCareWeb.TutorsController do
   use PetCareWeb, :controller
 
   alias PetCare.Tutors
-  alias PetCare.Tutors.Schema.Tutor
+  alias PetCare.Tutors.Tutor
 
   action_fallback PetCareWeb.FallbackController
 
   def create(conn, params) do
-    with {:ok, %Tutor{} = tutor} <- Tutors.create(params) do
+    with {:ok, %Tutor{} = tutor} <- Tutors.create_tutor(params) do
       conn
       |> put_status(:created)
       |> render(:create, tutor: tutor)
@@ -15,7 +15,7 @@ defmodule PetCareWeb.TutorsController do
   end
 
   def delete(conn, %{"id" => id}) do
-    with {:ok, %Tutor{} = tutor} <- Tutors.delete(id) do
+    with {:ok, %Tutor{} = tutor} <- Tutors.delete_tutor(id) do
       conn
       |> put_status(:ok)
       |> render(:delete, tutor: tutor)
@@ -23,7 +23,7 @@ defmodule PetCareWeb.TutorsController do
   end
 
   def show(conn, %{"id" => id}) do
-    with {:ok, %Tutor{} = tutor} <- Tutors.get(id) do
+    with {:ok, %Tutor{} = tutor} <- Tutors.get_tutor(id) do
       conn
       |> put_status(:ok)
       |> render(:get, tutor: tutor)
@@ -31,7 +31,7 @@ defmodule PetCareWeb.TutorsController do
   end
 
   def update(conn, params) do
-    with {:ok, %Tutor{} = tutor} <- Tutors.update(params) do
+    with {:ok, %Tutor{} = tutor} <- Tutors.update_tutor(params) do
       conn
       |> put_status(:ok)
       |> render(:update, tutor: tutor)
