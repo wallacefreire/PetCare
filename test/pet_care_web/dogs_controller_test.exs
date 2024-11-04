@@ -17,7 +17,7 @@ defmodule PetCareWeb.DogsControllerTest do
   end
 
   defp create_tutor do
-    {:ok, %Tutor{id: id}} = Tutors.create(tutor_params())
+    {:ok, %Tutor{id: id}} = Tutors.create_tutor(tutor_params())
     id
   end
 
@@ -82,7 +82,7 @@ defmodule PetCareWeb.DogsControllerTest do
         tutor_id: tutor_id
       }
 
-      {:ok, %Dog{id: id}} = Dogs.create(params)
+      {:ok, %Dog{id: id}} = Dogs.create_dog(params)
 
       response =
         conn
@@ -125,7 +125,7 @@ defmodule PetCareWeb.DogsControllerTest do
         tutor_id: tutor_id
       }
 
-      {:ok, %Dog{id: id}} = Dogs.create(params)
+      {:ok, %Dog{id: id}} = Dogs.create_dog(params)
 
       response =
         conn
@@ -162,7 +162,7 @@ defmodule PetCareWeb.DogsControllerTest do
         tutor_id: tutor_id
       }
 
-      {:ok, %Dog{id: id}} = Dogs.create(params)
+      {:ok, %Dog{id: id}} = Dogs.create_dog(params)
 
       update_params = %{name: "Negão Freire", breed: "Rottweiler Premium", weight: 60.0}
 
@@ -212,7 +212,7 @@ defmodule PetCareWeb.DogsControllerTest do
         tutor_id: tutor_id
       }
 
-      {:ok, %Dog{id: id}} = Dogs.create(params)
+      {:ok, %Dog{id: id}} = Dogs.create_dog(params)
 
       update_params = %{name: "", breed: "", weight: 0, tutor_id: ""}
 

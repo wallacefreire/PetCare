@@ -40,7 +40,7 @@ defmodule PetCareWeb.VeterinariansControllerTest do
     test "veterinarian sucessfully deleted", %{conn: conn} do
       param = %{name: "Pitocão"}
 
-      {:ok, %Veterinarian{id: id}} = Veterinarians.create(param)
+      {:ok, %Veterinarian{id: id}} = Veterinarians.create_veterinarian(param)
 
       response =
         conn
@@ -60,7 +60,7 @@ defmodule PetCareWeb.VeterinariansControllerTest do
     test "SHOW - returns 200 and show user by params", %{conn: conn} do
       param = %{name: "José Mario da Silva"}
 
-      {:ok, %Veterinarian{id: id}} = Veterinarians.create(param)
+      {:ok, %Veterinarian{id: id}} = Veterinarians.create_veterinarian(param)
 
       response =
         conn
@@ -77,7 +77,7 @@ defmodule PetCareWeb.VeterinariansControllerTest do
     test "when update veterinarian successfully", %{conn: conn} do
       param = %{name: "Dr. Fernandão"}
 
-      {:ok, %Veterinarian{id: id}} = Veterinarians.create(param)
+      {:ok, %Veterinarian{id: id}} = Veterinarians.create_veterinarian(param)
 
       update_param = %{name: "Dra. Fernandinha"}
 
@@ -97,7 +97,7 @@ defmodule PetCareWeb.VeterinariansControllerTest do
     test "error entering invalid data", %{conn: conn} do
       param = %{name: "Sr Acir Gurgacz"}
 
-      {:ok, %Veterinarian{id: id}} = Veterinarians.create(param)
+      {:ok, %Veterinarian{id: id}} = Veterinarians.create_veterinarian(param)
 
       update_param = %{name: ""}
 

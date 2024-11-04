@@ -1,4 +1,4 @@
-defmodule PetCareWeb.AddressessJSON do
+defmodule PetCareWeb.AddressesJSON do
   alias PetCare.Addresses.Address
 
   def create(%{address: address}) do

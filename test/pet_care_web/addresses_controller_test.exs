@@ -20,7 +20,7 @@ defmodule PetCareWeb.AddressesControllerTest do
   end
 
   defp create_tutor do
-    {:ok, %Tutor{id: id}} = Tutors.create(tutor_params())
+    {:ok, %Tutor{id: id}} = Tutors.create_tutor(tutor_params())
     id
   end
 
@@ -60,7 +60,7 @@ defmodule PetCareWeb.AddressesControllerTest do
 
       response =
         conn
-        |> post(~p"/api/enderecos", params)
+        |> post(~p"/api/addresses", params)
         |> json_response(:created)
 
       assert %{
@@ -77,7 +77,7 @@ defmodule PetCareWeb.AddressesControllerTest do
              } = response
     end
 
-    test "when the address contains invalid parameters", %{conn: conn} do
+    test "does not validate other fields when cep fails validation", %{conn: conn} do
       tutor_id = create_tutor()
 
       params = %{
@@ -90,12 +90,21 @@ defmodule PetCareWeb.AddressesControllerTest do
         "tutor_id" => tutor_id
       }
 
+      expect(ClientMock, :validate_cep, fn "123456789" ->
+        {:error, %Ecto.Changeset{errors: [cep: {"is invalid", []}]}}
+      end)
+
       response =
         conn
-        |> post(~p"/api/enderecos", params)
+        |> post(~p"/api/addresses", params)
         |> json_response(:bad_request)
 
-      assert response == "okay"
+      # Due to the validation error in the cep field, the validation process stops, and subsequent field validations are not executed
+      expected_response = %{
+        "errors" => %{"cep" => ["is invalid"]}
+      }
+
+      assert response == expected_response
     end
   end
 end

@@ -6,11 +6,11 @@ defmodule PetCareWeb.AddressesController do
 
   action_fallback PetCareWeb.FallbackController
 
-  def create_address(conn, params) do
-    with {:ok, %Address{} = endereco} <- Addresses.create_address(params) do
+  def create(conn, params) do
+    with {:ok, %Address{} = address} <- Addresses.create_address(params) do
       conn
       |> put_status(:created)
-      |> render(:create, endereco: endereco)
+      |> render(:create, address: address)
     end
   end
 end

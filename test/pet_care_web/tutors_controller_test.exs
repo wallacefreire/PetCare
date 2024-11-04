@@ -68,7 +68,7 @@ defmodule PetCare.TutorsControllerTest do
         email: "wallace@okay.com"
       }
 
-      {:ok, %Tutor{id: id}} = Tutors.create(params)
+      {:ok, %Tutor{id: id}} = Tutors.create_tutor(params)
 
       response =
         conn
@@ -111,7 +111,7 @@ defmodule PetCare.TutorsControllerTest do
         email: "wallace@damn.com"
       }
 
-      {:ok, %Tutor{id: id}} = Tutors.create(params)
+      {:ok, %Tutor{id: id}} = Tutors.create_tutor(params)
 
       response =
         conn
@@ -154,7 +154,7 @@ defmodule PetCare.TutorsControllerTest do
         email: "wallace@okay.com"
       }
 
-      {:ok, %Tutor{id: id}} = Tutors.create(params)
+      {:ok, %Tutor{id: id}} = Tutors.create_tutor(params)
 
       update_params = %{name: "Wallace Heleno", email: "wallaceheleno@okay.com"}
 
@@ -202,7 +202,7 @@ defmodule PetCare.TutorsControllerTest do
         email: "wallace@okay.com"
       }
 
-      {:ok, %Tutor{id: id}} = Tutors.create(params)
+      {:ok, %Tutor{id: id}} = Tutors.create_tutor(params)
 
       update_params = %{name: "WH", cpf: "2329", password: "930", email: "wallaceokay.com"}
 

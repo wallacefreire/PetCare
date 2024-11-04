@@ -55,11 +55,6 @@ defmodule PetCare.Tutors.Tutor do
     |> add_password_hash()
   end
 
-  @doc """
-  Applies additional validations for tutor fields.
-
-  Ensures minimum length for `name`, `password`, and `cpf`, checks email format, and enforces unique constraints for `email` and `cpf`.
-  """
   defp do_validations(changeset) do
     changeset
     |> validate_length(:name, min: 3)
@@ -70,11 +65,6 @@ defmodule PetCare.Tutors.Tutor do
     |> unique_constraint(:cpf)
   end
 
-  @doc """
-  Adds a hashed password to the changeset if `password` is provided and valid.
-
-  Uses the Argon2 hashing algorithm to securely store the password.
-  """
   defp add_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do

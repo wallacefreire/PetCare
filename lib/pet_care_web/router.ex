@@ -27,7 +27,7 @@ defmodule PetCareWeb.Router do
         :show
       ]
 
-    post "/address", AddressesController, :create
+    post "/addresses", AddressesController, :create
   end
 
   # Enable LiveDashboard in development
